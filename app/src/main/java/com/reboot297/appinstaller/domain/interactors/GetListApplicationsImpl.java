@@ -14,20 +14,23 @@
  * limitations under the License.
  */
 
-package com.reboot297.appinstaller;
+package com.reboot297.appinstaller.domain.interactors;
 
-import org.junit.Test;
+import com.reboot297.appinstaller.data.AppItemsRepositoryImpl;
+import com.reboot297.appinstaller.domain.model.AppItem;
+import com.reboot297.appinstaller.domain.repository.AppItemsRepository;
 
-import static org.junit.Assert.*;
+import java.util.List;
 
 /**
- * Example local unit test, which will execute on the development machine (host).
- *
- * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
+ * UseCase to get all applications.
  */
-public class ExampleUnitTest {
-    @Test
-    public void addition_isCorrect() {
-        assertEquals(4, 2 + 2);
+public class GetListApplicationsImpl implements GetListApplications {
+
+    AppItemsRepository appItemsRepository = new AppItemsRepositoryImpl();
+
+    @Override
+    public List<AppItem> getAppItems() {
+        return appItemsRepository.getAllItems();
     }
 }
