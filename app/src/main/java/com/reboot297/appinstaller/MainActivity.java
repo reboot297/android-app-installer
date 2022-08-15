@@ -1,10 +1,10 @@
-package com.victorpop.appinstaller;
+package com.reboot297.appinstaller;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-import com.victorpop.appinstaller.ui.main.MainFragment;
+import com.reboot297.appinstaller.ui.main.MainFragment;
 
 public class MainActivity extends AppCompatActivity {
 

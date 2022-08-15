@@ -1,4 +1,4 @@
-package com.victorpop.appinstaller;
+package com.reboot297.appinstaller;
 
 import android.content.Context;
 

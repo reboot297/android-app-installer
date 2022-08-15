@@ -1,4 +1,4 @@
-package com.victorpop.appinstaller.ui.main;
+package com.reboot297.appinstaller.ui.main;
 
 import androidx.lifecycle.ViewModel;
 

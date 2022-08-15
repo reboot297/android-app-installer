@@ -1,4 +1,4 @@
-package com.victorpop.appinstaller.ui.main;
+package com.reboot297.appinstaller.ui.main;
 
 import androidx.lifecycle.ViewModelProvider;
 
@@ -12,7 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.victorpop.appinstaller.R;
+import com.reboot297.appinstaller.R;
 
 public class MainFragment extends Fragment {
 
