@@ -22,7 +22,14 @@ import com.reboot297.appinstaller.domain.repository.AppItemsRepository;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AppItemsRepositoryImpl  implements AppItemsRepository {
+import javax.inject.Inject;
+
+public class AppItemsRepositoryImpl implements AppItemsRepository {
+
+    @Inject
+    public AppItemsRepositoryImpl() {
+
+    }
 
     @Override
     public List<AppItem> getAllItems() {
@@ -35,7 +42,6 @@ public class AppItemsRepositoryImpl  implements AppItemsRepository {
         items.add(createFakeItem(5));
         return items;
     }
-
 
     private AppItem createFakeItem(int number) {
         AppItem item = new AppItem();

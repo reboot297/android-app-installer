@@ -26,6 +26,8 @@ import com.reboot297.appinstaller.domain.model.AppItem;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 /**
  * ViewModel for main screen.
  */
@@ -33,10 +35,15 @@ public class AppListViewModel extends ViewModel {
 
     private final MutableLiveData<List<AppItem>> appItems = new MutableLiveData<>();
 
-    private final GetListApplications getListApplications = new GetListApplicationsImpl();
+    private final GetListApplications getListApplications ;
 
     public LiveData<List<AppItem>> getAppItems() {
         return appItems;
+    }
+
+    @Inject
+    public AppListViewModel(GetListApplicationsImpl getListApplications) {
+        this.getListApplications = getListApplications;
     }
 
     void loadData() {

@@ -16,27 +16,33 @@
 
 package com.reboot297.appinstaller.ui.main;
 
-import androidx.lifecycle.ViewModelProvider;
-
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.reboot297.appinstaller.App;
 import com.reboot297.appinstaller.R;
+import com.reboot297.appinstaller.di.ViewModelFactory;
+
+import javax.inject.Inject;
 
 /**
  * Screen with list of all applications.
  */
 public class AppListFragment extends Fragment {
 
-    private AppListViewModel viewModel;
+    @Inject
+    ViewModelFactory viewModelFactory;
+
+    AppListViewModel viewModel;
+
     private RecyclerView recyclerView;
     private AppListAdapter adapter;
 
@@ -48,7 +54,8 @@ public class AppListFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        viewModel = new ViewModelProvider(this).get(AppListViewModel.class);
+        ((App) requireContext().getApplicationContext()).applicationComponent.inject(this);
+        viewModel = new ViewModelProvider(this, viewModelFactory).get(AppListViewModel.class);
         adapter = new AppListAdapter();
     }
 

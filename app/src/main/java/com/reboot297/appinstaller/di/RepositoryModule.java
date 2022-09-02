@@ -14,30 +14,17 @@
  * limitations under the License.
  */
 
-package com.reboot297.appinstaller.domain.interactors;
+package com.reboot297.appinstaller.di;
 
-import com.reboot297.appinstaller.domain.model.AppItem;
+import com.reboot297.appinstaller.data.AppItemsRepositoryImpl;
 import com.reboot297.appinstaller.domain.repository.AppItemsRepository;
 
-import java.util.List;
+import dagger.Binds;
+import dagger.Module;
 
-import javax.inject.Inject;
-import javax.inject.Singleton;
+@Module
+public interface RepositoryModule {
 
-/**
- * UseCase to get all applications.
- */
-public class GetListApplicationsImpl implements GetListApplications {
-
-    private final AppItemsRepository appItemsRepository;
-
-    @Inject
-    public GetListApplicationsImpl(AppItemsRepository appItemsRepository) {
-        this.appItemsRepository = appItemsRepository;
-    }
-
-    @Override
-    public List<AppItem> getAppItems() {
-        return appItemsRepository.getAllItems();
-    }
+    @Binds
+    AppItemsRepository bindRepository(AppItemsRepositoryImpl appItemsRepository);
 }
