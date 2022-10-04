@@ -16,19 +16,48 @@
 
 package com.reboot297.appinstaller.data;
 
+import android.content.Context;
+import android.net.Uri;
+import android.util.Log;
+
+import androidx.annotation.NonNull;
+
+import com.reboot297.appinstaller.data.file.FileManager;
+import com.reboot297.appinstaller.data.mapper.JsonMapper;
 import com.reboot297.appinstaller.domain.model.AppItem;
 import com.reboot297.appinstaller.domain.repository.AppItemsRepository;
 
+import org.json.JSONObject;
+
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.inject.Singleton;
 
+@Singleton
 public class AppItemsRepositoryImpl implements AppItemsRepository {
 
-    @Inject
-    public AppItemsRepositoryImpl() {
+    private final FileManager fileManager;
+    private final JsonMapper jsonMapper;
+    private final Context applicationContext;
 
+    @Inject
+    public AppItemsRepositoryImpl(@NonNull Context context,
+                                  @NonNull FileManager fileManager,
+                                  @NonNull JsonMapper jsonMapper) {
+        this.fileManager = fileManager;
+        this.applicationContext = context;
+        this.jsonMapper = jsonMapper;
+        initData();
+    }
+
+    private void initData() {
+        File file = new File(applicationContext.getFilesDir(), "local_data.txt");
+        String data = fileManager.readFile(Uri.fromFile(file));
+        JSONObject jsonObject = jsonMapper.fromString(data);
+        Log.d("", "initData: " + data);
     }
 
     @Override

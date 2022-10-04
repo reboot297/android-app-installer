@@ -19,7 +19,16 @@ package com.reboot297.appinstaller.data.mapper;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import javax.inject.Inject;
+import javax.inject.Singleton;
+
+@Singleton
 public class JsonMapper {
+
+    @Inject
+    public JsonMapper() {
+
+    }
 
     public JSONObject fromString(String source) {
         try {

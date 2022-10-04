@@ -19,16 +19,18 @@ package com.reboot297.appinstaller;
 import android.app.Application;
 
 import com.reboot297.appinstaller.di.ApplicationComponent;
+import com.reboot297.appinstaller.di.BaseModule;
 import com.reboot297.appinstaller.di.DaggerApplicationComponent;
 
 public class App extends Application {
 
     public ApplicationComponent applicationComponent;
 
-
     @Override
     public void onCreate() {
         super.onCreate();
-        applicationComponent = DaggerApplicationComponent.create();
+        applicationComponent = DaggerApplicationComponent.builder()
+                .baseModule(new BaseModule(getApplicationContext()))
+                .build();
     }
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022-2022. Viktor Pop
+ * Copyright (c) 2022. Viktor Pop
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,19 +16,28 @@
 
 package com.reboot297.appinstaller.di;
 
-import com.reboot297.appinstaller.ui.main.AppListFragment;
+import android.content.ContentResolver;
+import android.content.Context;
 
-import javax.inject.Singleton;
+import dagger.Module;
+import dagger.Provides;
 
-import dagger.Component;
+@Module
+public class BaseModule {
 
-@Component(modules = {
-        BaseModule.class,
-        RepositoryModule.class,
-        UseCaseModule.class,
-        ViewModelModule.class
-})
-@Singleton
-public interface ApplicationComponent {
-    void inject(AppListFragment appListFragment);
+    private final Context applicationContext;
+
+    public BaseModule(Context applicationContext) {
+        this.applicationContext = applicationContext;
+    }
+
+    @Provides
+    public Context provideAppContext() {
+        return applicationContext;
+    }
+
+    @Provides
+    public ContentResolver provideContentResolver() {
+        return applicationContext.getContentResolver();
+    }
 }

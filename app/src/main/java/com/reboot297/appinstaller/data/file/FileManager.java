@@ -16,6 +16,7 @@
 
 package com.reboot297.appinstaller.data.file;
 
+import android.content.ContentResolver;
 import android.content.Context;
 import android.net.Uri;
 
@@ -28,12 +29,24 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
+import javax.inject.Inject;
+import javax.inject.Singleton;
+
+@Singleton
 public class FileManager {
 
-    public String readFile(@NonNull Context context, @NonNull Uri uri) {
+    @NonNull
+    private final ContentResolver contentResolver;
+
+    @Inject
+    public FileManager(@NonNull ContentResolver contentResolver) {
+        this.contentResolver = contentResolver;
+    }
+
+    public String readFile(@NonNull Uri uri) {
         StringBuilder builder = new StringBuilder();
         try {
-            InputStream inputStream = context.getContentResolver().openInputStream(uri);
+            InputStream inputStream = contentResolver.openInputStream(uri);
             BufferedReader r = new BufferedReader(new InputStreamReader(inputStream));
             String mLine;
             while ((mLine = r.readLine()) != null) {
